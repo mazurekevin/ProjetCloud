@@ -1,28 +1,17 @@
 
-      <mat-step [stepControl]="registerFormOne">
-        <form novalidate (ngSubmit) = "saveDataFirst()" [formGroup]="registerFormOne">
+
           <div class="form-row">
             <div class="col-md-6 mb-3">
               <label>Nom</label>
               <input type="text" class="form-control" placeholder="Nom"
-                     formControlName="lastName"
-                     [ngClass]="{'is-invalid': registerFormOne.get('lastName')?.touched && !registerFormOne.get('lastName')?.valid}">
-              <div class="invalid-feedback">
-                    <span *ngIf="registerFormOne.get('lastName')?.errors?.required">
-                        Entrez votre nom
-                    </span>
-              </div>
+                     formControlName="lastName">
+
             </div>
             <div class="col-md-6 mb-3">
               <label>Prenom</label>
               <input type="text" class="form-control" placeholder="Prenom"
-                     formControlName="firstName"
-                     [ngClass]="{'is-invalid': registerFormOne.get('firstName')?.touched && !registerFormOne.get('firstName')?.valid}">
-              <div class="invalid-feedback">
-                    <span *ngIf="registerFormOne.get('firstName')?.errors?.required">
-                        Entrez votre prenom
-                    </span>
-              </div>
+                     formControlName="firstName">
+
             </div>
           </div>
           <div class="form-row" formGroupName="emailGroup">
@@ -30,92 +19,45 @@
               <label>E-Mail</label>
               <input type="email" class="form-control" placeholder="Email"
                      formControlName="email"
-                     [ngClass]="{'is-invalid': registerFormOne.get('emailGroup')?.errors ||
-                    (registerFormOne.get('emailGroup.email')?.touched && !registerFormOne.get('emailGroup.email')?.valid)}"
               >
-              <div class="invalid-feedback">
-                        <span *ngIf="registerFormOne.get('emailGroup.email')?.errors?.required">
-                            Entrez votre E-mail
-                        </span>
-                <span *ngIf="registerFormOne.get('emailGroup.email')?.errors?.email">
-                            Votre E-mail est invalide
-                        </span>
-              </div>
+
             </div>
             <div class="col-md-6 mb-6">
               <label for="confirEmailId">Confirmer l'E-mail</label>
               <input type="email" class="form-contol" id="confirEmailId" placeholder="Confirmer l'email"
-                     formControlName="confirmEmail"
-                     [ngClass]="{'is-invalid': registerFormOne.get('emailGroup')?.errors || ((registerFormOne.get('emailGroup.confirmEmail')?.touched||registerFormOne.get('emailGroup.confirmEmail')?.dirty)
-                    && !registerFormOne.get('emailGroup.confirmEmail')?.valid)}">
-              <div class="invalid-feedback">
-                            <span *ngIf="registerFormOne.get('emailGroup.confirmEmail')?.errors?.required">
-                                 Remplir
-                            </span>
-                <span *ngIf="registerFormOne.get('emailGroup.confirmEmail')?.errors?.match">
-                                 Pas identique
-                            </span>
-              </div>
+                     formControlName="confirmEmail">
+
             </div>
 
           </div>
 
-          <div class="col-md-6 mb-3">
-            <label>Nom d'utilisateur</label>
-            <input type="text" class="form-control" placeholder="Nom d'utilisateur"
-                   formControlName="login"
-                   [ngClass]="{'is-invalid': registerFormOne.get('login')?.touched && !registerFormOne.get('login')?.valid}">
-            <div class="invalid-feedback">
-                <span *ngIf="registerFormOne.get('login')?.errors?.required">
-                    Entrez votre nom d'utilisateur
-                </span>
-              <span *ngIf="registerFormOne.get('login')?.errors?.minlength">
-                    Entrez votre nom d'utilisateur
-                </span>
-            </div>
-          </div>
+
+
           <div class="form-row" formGroupName="passwordGroup">
             <div class="col-md-6 mb-3">
               <label>Mot de passe</label>
               <input type="password" class="form-control" placeholder="Mot de passe"
                      formControlName="password"
-                     [ngClass]="{'is-invalid': registerFormOne.get('passwordGroup')?.errors ||
-                    (registerFormOne.get('passwordGroup.password')?.touched && !registerFormOne.get('passwordGroup.password')?.valid)}"
-              >
-              <div class="invalid-feedback">
-                    <span *ngIf="registerFormOne.get('passwordGroup.password')?.errors?.required">
-                        Entrez votre Mot de passe
-                    </span>
-                <span *ngIf="registerFormOne.get('passwordGroup.password')?.errors?.minlenght">
-                        Choisir un mot de passe avec au minimum 8 caractères
-                    </span>
-              </div>
+>
+
             </div>
             <div class="col-md-6 mb-3">
               <label for="confirPasswordId">Confirmer le mot de passe</label>
               <input type="password"  class="form-contol" id="confirPasswordId" placeholder="Confirmer le mot de passe"
                      formControlName="confirmPassword"
-                     [ngClass]="{'is-invalid': registerFormOne.get('passwordGroup')?.errors || ((registerFormOne.get('passwordGroup.confirmPassword')?.touched||registerFormOne.get('passwordGroup.confirmPassword')?.dirty)
-                    && !registerFormOne.get('passwordGroup.confirmPassword')?.valid)}">
+>
 
-              <div class="invalid-feedback">
-                    <span *ngIf="registerFormOne.get('passwordGroup.confirmPassword')?.errors?.required">
-                        Remplir
-                    </span>
-                <span *ngIf="registerFormOne.get('passwordGroup.confirmPassword')?.errors?.match">
-                        Pas identique
-                    </span>
-              </div>
+
             </div>
 
           </div>
           <div class="text-right">
-            <button mat-flat-button color="basic" matStepperNext (click)="saveDataFirst()" #confirmButton>
+            <button mat-flat-button color="basic">
               Suivant
             </button>
           </div>
-        </form>
-      </mat-step>
+
+
 
 
 
