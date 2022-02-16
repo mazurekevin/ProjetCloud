@@ -25,27 +25,4 @@ export class AuthController {
         Promise<UserInstance | null> {
         return await this.User.create(props);
     }
-
-    // public async log(username: string, password: string): Promise<any> {
-    //     const passwordHashed = await hash(password, 5);
-    //     const user = await this.User.findOne({
-    //         where: {
-    //             username
-    //         }
-    //     });
-    //     if (user === null) {
-    //         return null
-    //     }
-    //     const isSamePassword = await compare(password, user.password);
-    //     if(!isSamePassword) {
-    //         console.log(passwordHashed + ' ' + user.password)
-    //         return null;
-    //     }
-    //     const token = await hash(Date.now() + username,5);
-    //     const session = await this.Session.create({
-    //         token,
-    //     });
-    //     await session.setUser(user);
-    //     return {session, user};
-    // }
 }

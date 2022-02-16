@@ -6,8 +6,8 @@ import { hash } from "bcrypt";
 const authRouter = express.Router();
 
 authRouter.post("/subscribe",
-    check('firstname').isLength({ min: 2 }).isAlpha(),
-    check('lastname').isLength({ min: 2 }).isAlpha(),
+    check('firstname').isLength({ min: 1 }).isAlpha(),
+    check('lastname').isLength({ min: 1 }).isAlpha(),
     check('password').isLength({ min: 8 }),
     check('email').isEmail(),
     async function (req, res) {
@@ -34,6 +34,7 @@ authRouter.post("/subscribe",
         } else {
             res.status(409).end();
         }
+        return
     });
 
 // authRouter.post("/login", async function (req, res) {

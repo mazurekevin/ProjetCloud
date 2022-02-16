@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, Form} from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
 
@@ -40,8 +41,9 @@ function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null 
 })
 
 export class FormulaireComponent implements OnInit {
-  public registerFormOne: FormGroup | undefined;
-  constructor(private fb: FormBuilder) {
+  
+  public registerFormOne: FormGroup;
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerFormOne = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(1)]],
       lastName: ['', [Validators.required, Validators.minLength(1)]],
@@ -49,7 +51,7 @@ export class FormulaireComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         confirmEmail: ['', [Validators.required]],
       }, {validators: emailMatcher}),
-      login: ['', [Validators.required, Validators.minLength(1)]],
+      //login: ['', [Validators.required, Validators.minLength(1)]], 
       passwordGroup: this.fb.group({
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', Validators.required],
@@ -57,7 +59,26 @@ export class FormulaireComponent implements OnInit {
     });
   }
 
+
   ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+    const response = this.registerFormOne.controls;
+    const firstname = response.firstName.value;
+    const lastname = response.lastName.value;
+    const email = response.emailGroup.get('email')?.value;
+    const password = response.passwordGroup.get('password')?.value;
+
+    if(this.registerFormOne.status == "VALID")
+    this.authService.register(firstname, lastname, email, password).subscribe(
+      data => {
+        console.log(this.registerFormOne);
+      },
+      err => {
+        console.log("error");
+      }
+    );
   }
 
 }

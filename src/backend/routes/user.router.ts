@@ -1,7 +1,6 @@
 import express from "express";
 import {check, validationResult} from 'express-validator';
 import { UserController } from "../controllers/user.controller";
-//import { isAuth, hasRole} from '../middlewares/auth.middleware';
 
 const userRouter = express.Router();
 

@@ -27,12 +27,12 @@ export class SequelizeManager implements SequelizeManagerProps {
 
     private static async initialize(): Promise<SequelizeManager> {
         const sequelize = new Sequelize({
-            dialect : process.env["DB_DRIVER"] as Dialect,
-            host    : process.env["DB_HOST"],
-            database: process.env["DB_NAME"],
-            username: process.env["DB_USER"],
-            password: process.env["DB_PASSWORD"],
-            port    : Number.parseInt(process.env["DB_PORT"] as string), 
+            dialect : "mysql" as Dialect,
+            host    : "localhost",
+            database: "projet_cloud",
+            username: "root",
+            password: "root",
+            port    : 3306,
             
             define: {
                 freezeTableName: true,
@@ -45,12 +45,8 @@ export class SequelizeManager implements SequelizeManagerProps {
             sequelize,
             User           : userCreator(sequelize),
         }
-        SequelizeManager.associate(managerProps);
         await sequelize.sync();
         return new SequelizeManager(managerProps);
     }
 
-    private static associate(props: SequelizeManagerProps): void {
-
-    }
 }
