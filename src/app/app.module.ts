@@ -8,10 +8,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FormulaireComponent
-  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -19,7 +15,11 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     HttpClientModule
 
   ],
-  providers: [authInterceptorProviders],
+  declarations: [
+    AppComponent,
+    FormulaireComponent
+  ],
+providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
