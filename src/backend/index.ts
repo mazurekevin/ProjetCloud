@@ -30,17 +30,6 @@ buildRoutes(app);
 
 const port = process.env["PORT"] || 3000;
 
-
-io.on("connection", function(socket: any) {
-  console.log("a user connected");
-  socket.on('message', (message_text:any) => {
-    socket.broadcast.emit('message-broadcast', message_text);
-   });
-});
 app.listen(port, function() {
     console.log(`Listening on ${port}...`);
-});
-
-http.listen(3001, function() {
-  console.log(`Listening on 3001...`);
 });
