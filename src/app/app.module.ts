@@ -6,15 +6,15 @@ import { FormulaireComponent } from './formulaire/formulaire.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FormulaireComponent
-  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
 
+  ],
+  declarations: [
+    AppComponent,
+    FormulaireComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
