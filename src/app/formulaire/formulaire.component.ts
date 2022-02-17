@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, Injector, OnInit } from '@angular/core';
 import {FormGroup,FormControl, FormBuilder, Validators, AbstractControl, ValidatorFn, Form} from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
 
@@ -40,16 +43,10 @@ function passwordMatcher(c: AbstractControl): { [key: string]: boolean } | null 
 })
 
 export class FormulaireComponent implements OnInit {
-  registerFormOne: FormGroup;
-  registerForm = new FormGroup({
-    lastname:new FormControl('',[Validators.required]),
-  });
 
-  get lastname(){
-    return this.registerForm.get('lastname');
-  }
-
-  constructor(private fb: FormBuilder) {
+  
+  public registerFormOne: FormGroup;
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerFormOne = this.fb.group({
       firstName: ['', [ Validators.required,Validators.minLength(1)]],
       lastName: ['', [Validators.required,Validators.minLength(1)]],
@@ -64,7 +61,26 @@ export class FormulaireComponent implements OnInit {
     })
   }
 
+
   ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+    const response = this.registerFormOne.controls;
+    const firstname = response.firstName.value;
+    const lastname = response.lastName.value;
+    const email = response.emailGroup.get('email')?.value;
+    const password = response.passwordGroup.get('password')?.value;
+
+    if(this.registerFormOne.status == "VALID")
+    this.authService.register(firstname, lastname, email, password).subscribe(
+      data => {
+        console.log(this.registerFormOne);
+      },
+      err => {
+        console.log("error");
+      }
+    );
   }
 
 }

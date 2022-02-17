@@ -3,7 +3,8 @@
     S'enregistrer
   </div>
   <div class="card-body">
-    <form [formGroup]="registerFormOne">
+
+    <form [formGroup]="registerFormOne" name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
           <div class="form-row">
             <div class="col-md-6 mb-3">
               <label>Nom</label>
@@ -62,10 +63,15 @@
                                  Pas identique
                             </span>
               </div>
+        </div>
+        <div class="col-md-6 mb-6" formGroupName="emailGroup">
+          <label for="confirEmailId">Confirmer l'E-mail</label>
+          <input type="email" class="form-contol" id="confirEmailId" placeholder="Confirmer l'email"
+            formControlName="confirmEmail">
 
-            </div>
+        </div>
 
-          </div>
+      </div>
 
 
 
@@ -101,20 +107,15 @@
                     </span>
               </div>
             </div>
+        </div>
 
-          </div>
-          <div class="text-right">
-            <button class="btn btn-info">
-              Valider
-            </button>
-          </div>
+      </div>
+      <div class="text-right">
+        <button class="btn btn-info" type="submit">
+          Valider
+        </button>
+      </div>
 
     </form>
   </div>
 </div>
-
-
-
-
-
-
