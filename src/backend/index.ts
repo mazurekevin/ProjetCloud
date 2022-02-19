@@ -3,9 +3,7 @@ config();
 import express, {Express} from "express";
 import bodyParser from "body-parser";
 import {buildRoutes} from "./routes";
-import * as socketio from "socket.io";
-import { Socket } from "dgram";
-import { NextFunction } from "connect";
+
 
 
 //buildSeeders(); //populate database table with random data
@@ -25,7 +23,7 @@ app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', '*');
   next();
 });
-  
+
 buildRoutes(app);
 
 const port = process.env["PORT"] || 3000;
