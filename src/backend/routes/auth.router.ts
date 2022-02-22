@@ -37,25 +37,26 @@ authRouter.post("/subscribe",
         return
     });
 
-// authRouter.post("/login", async function (req, res) {
-//     const username = req.body.username;
-//     const password = req.body.password;
-//     if (username === undefined || password === undefined) {
-//         res.status(400).end();
-//         return;
-//     }
-//     const authController = await AuthController.getInstance();
-//     const data = await authController.log(username, password);
-//     if (data === null) {
-//         res.status(404).send({error: 'Invalid user login'}).end();
-//         return;
-//     } else {
-//         res.json({
-//             token: data.session.token,
-//             user: data.user
-//         });
-//     }
-// });
+authRouter.post("/login", async function (req, res) {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    if (email === undefined || password === undefined) {
+        res.status(400).end();
+        return;
+    }
+    const authController = await AuthController.getInstance();
+    const data = await authController.log(email, password);
+    if (data === null) {
+        res.status(404).send({error: 'Invalid user login'}).end();
+        return;
+    } else {
+        res.json({
+            token: data.session.token,
+            user: data.user
+        });
+    }
+});
 
 export {
     authRouter
