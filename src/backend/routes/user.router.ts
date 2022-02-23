@@ -5,21 +5,21 @@ import { UserController } from "../controllers/user.controller";
 const userRouter = express.Router();
 
 userRouter.get("/", async function(req, res) {
-    const plateController = await UserController.getInstance();
-    const plate = await plateController.getAll();
-    if(plate !== null) {
+    const userController = await UserController.getInstance();
+    const user = await userController.getAll();
+    if(user !== null) {
         res.status(200);
-        res.json(plate);
+        res.json(user);
     }else {
         res.status(404).end();
     }
 });
 userRouter.get("/availables", async function(req, res) {
-    const plateController = await UserController.getInstance();
-    const plate = await plateController.getAll(true);
-    if(plate !== null) {
+    const userController = await UserController.getInstance();
+    const user = await userController.getAll(true);
+    if(user !== null) {
         res.status(200);
-        res.json(plate);
+        res.json(user);
     }else {
         res.status(404).end();
     }
