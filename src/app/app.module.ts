@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
+import {MatToolbarModule} from "@angular/material/toolbar";
 import { AppComponent } from './app.component';
 import { FormulaireComponent } from './formulaire/formulaire.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -25,6 +25,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatListModule} from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
@@ -33,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    MatToolbarModule,
     MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
@@ -51,13 +55,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCheckboxModule,
     MatTooltipModule,
     MatListModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule
 
   ],
   declarations: [
     AppComponent,
     FormulaireComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent,
+    MenuComponent
   ],
 providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
