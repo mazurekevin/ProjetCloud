@@ -26,7 +26,15 @@ export class AuthController {
 
     public async subscribe(props: UserCreationProps):
         Promise<UserInstance | null> {
+            const email = props.email
+            const user = await this.User.findOne({
+                where: {
+                    email
+                }
+            });
+            if(user === null)
         return await this.User.create(props);
+        else return null;
     }
 
     public async log(email: string, password: string): Promise<any> {

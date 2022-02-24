@@ -32,7 +32,7 @@ authRouter.post("/subscribe",
             res.json(user);
             res.status(201).end();
         } else {
-            res.status(409).end();
+            res.status(409).send({error: 'Email already used'}).end();
         }
         return
     });
@@ -41,12 +41,14 @@ authRouter.post("/login", async function (req, res) {
     const email = req.body.email;
     const password = req.body.password;
 
+
     if (email === undefined || password === undefined) {
         res.status(400).end();
         return;
     }
     const authController = await AuthController.getInstance();
     const data = await authController.log(email, password);
+
     if (data === null) {
         res.status(404).send({error: 'Invalid user login'}).end();
         return;
